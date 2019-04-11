@@ -1,4 +1,59 @@
 #pragma once
+class Complejo {
+private:
+	ComplejoBinomial* binomial = nullptr;
+	ComplejoPolar* polar = nullptr;
+public:
+	ComplejoBinomial GetBinomial() {
+		if (binomial == nullptr) {
+			//crearlo
+		}
+		return *binomial;
+	}
+
+};
+
+typedef struct ComplejoBinomial {
+	float real;
+	float imaginaria;
+
+	float mod() {
+		return sqrt(pow(real, 2) + pow(imaginaria, 2));
+	}
+
+	float arg() {
+		float angulo = atan(imaginaria / real);
+
+		if (real >= 0) {
+			if (imaginaria >= 0) {		//1er Cuadrante
+				return angulo;
+			}
+			else {						//4to Cuadrante
+				return 2 * Math.PI + angulo;
+			}
+		}
+		else {							//2do y 3er Cuadrante
+			return Math.PI + angulo;
+		}
+	}
+
+
+};
+
+typedef struct ComplejoPolar {
+	float modulo;
+	float argumento;
+
+	void corregirVuelta() {}
+
+	float real() {
+		return r * cos(q);
+	}
+
+	float imaginario() {
+		return r * sin(q);
+	}
+};
 
 float Polar_BinomicaRE(float, float);
 float Polar_BinomicaIM(float, float);
