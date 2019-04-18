@@ -46,6 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DoubleExtensions.cs" />
     <Compile Include="FormaBinomica.cs" />
     <Compile Include="FormaPolar.cs" />
     <Compile Include="NumeroComplejo.cs" />

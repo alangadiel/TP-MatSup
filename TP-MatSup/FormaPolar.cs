@@ -1,30 +1,29 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace TP_MatSup
 {
-    public class FormaPolar
+    public class FormaPolar : NumeroComplejo
     {
-        public double Modulo;
-        private double argumento;
-        public double Argumento
-        {
-            get => argumento;
-            set => argumento = value % (2 * Math.PI); //Chequea que esté en el primer giro positivo
-        }
+        double modulo;
+        double argumento;
+        public override double Modulo => modulo;
+        public override double Argumento => argumento;
 
         public FormaPolar(double modulo, double argumento)
         {
-            Modulo = modulo;
-            Argumento = argumento;
+            this.modulo = modulo;
+            this.argumento = argumento % (2 * Math.PI); //primer giro positivo
         }
 
-        public double ParteReal => Modulo * Math.Cos(Argumento);
-        public double ParteImaginaria => Modulo * Math.Sin(Argumento);
+        public override double ParteReal => Modulo * Math.Cos(Argumento);
+        public override double ParteImaginaria => Modulo * Math.Sin(Argumento);
 
-        public override string ToString() => "Z = [ " + Modulo.ToString("F") + " ; " + Argumento.ToString("F") + " ]";
+        public override NumeroComplejo Convertir() => new FormaBinomica(ParteReal, ParteImaginaria);
+        public override string ToString() => "Z = [ " + Modulo.MyToString() + " ; " + Argumento.MyToString() + " ]";
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -7,19 +8,19 @@ using System.Windows.Forms;
 
 namespace TP_MatSup
 {
-    public class FormaBinomica
+    public class FormaBinomica : NumeroComplejo
     {
-        public double ParteReal;
-        public double ParteImaginaria;
-
+        double real;
+        double img;
+        public override double ParteReal => real;
+        public override double ParteImaginaria => img;
         public FormaBinomica(double real, double img)
         {
-            ParteReal = real;
-            ParteImaginaria = img;
+            this.real = real;
+            this.img = img;
         }
-
-        public double Modulo => Math.Sqrt(Math.Pow(ParteReal, 2) + Math.Pow(ParteImaginaria, 2));
-        public double Argumento
+        public override double Modulo => Math.Sqrt(Math.Pow(ParteReal, 2) + Math.Pow(ParteImaginaria, 2));
+        public override double Argumento
         {
             get
             {
@@ -36,6 +37,7 @@ namespace TP_MatSup
             }
         }
 
-        public override string ToString() => "Z = " + ParteReal.ToString("F") + " + (" + ParteImaginaria.ToString("F") + ")*j";
+        public override NumeroComplejo Convertir() => new FormaPolar(Modulo, Argumento);
+        public override string ToString() => "Z = " + ParteReal.MyToString() + " + (" + ParteImaginaria.MyToString() + ")*j";
     }
 }

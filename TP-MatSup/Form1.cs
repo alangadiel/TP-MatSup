@@ -12,29 +12,56 @@ namespace TP_MatSup
 {
     public partial class Form1 : Form
     {
+        public enum OperacionesBasicas { Suma, Resta, Multiplicacion, Division };
         public Form1()
         {
             InitializeComponent();
+            comboBoxOB.DataSource = Enum.GetValues(typeof(OperacionesBasicas));
         }
 
-        private void boton_convertir_Click(object sender, EventArgs e)
+        private void BotonConvClick(object sender, EventArgs e)
         {
             try
             {
-                var input = txtbox_conv.Text;
-                if (input == "") throw new Exception("Ingrese un numero.");
-                var num = new NumeroComplejo(input);
-                object num2;
-                if(num.FormaBinomica != null)
+                labelResulConv.Text = "Resultado: " 
+                    + NumeroComplejo.Parse(textBoxConv.Text).Convertir().ToString();
+                labelResulConv.Visible = true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message);
+            }
+        }
+
+        private void ComboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            botonOB.Enabled = true;
+        }
+
+        private void BotonOBClick(object sender, EventArgs e)
+        {
+            try
+            {
+                var num1 = NumeroComplejo.Parse(textBoxOB1.Text);
+                var num2 = NumeroComplejo.Parse(textBoxOB2.Text);
+                NumeroComplejo res = null;
+                switch((OperacionesBasicas)comboBoxOB.SelectedItem)
                 {
-                    num2 = NumeroComplejo.BinomicaAPolar(num.FormaBinomica);
+                    case OperacionesBasicas.Suma:
+                        res = num1 + num2;
+                        break;
+                    case OperacionesBasicas.Resta:
+                        res = num1 - num2;
+                        break;
+                    case OperacionesBasicas.Multiplicacion:
+                        res = num1 * num2;
+                        break;
+                    case OperacionesBasicas.Division:
+                        res = num1 / num2;
+                        break;
                 }
-                else
-                {
-                    num2 = NumeroComplejo.PolarABinomica(num.FormaPolar);
-                }
-                label_resul_conv.Text = "Resultado: " + num2.ToString();
-                label_resul_conv.Visible = true;
+                labelResulOB.Text = "Resultado: " + res.ToString();
+                labelResulOB.Visible = true;
             }
             catch (Exception ex)
             {
