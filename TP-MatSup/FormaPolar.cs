@@ -8,17 +8,23 @@ namespace TP_MatSup
 {
     public class FormaPolar
     {
-        public double Radio;
-        private double angulo;
-        public double Angulo
+        public double Modulo;
+        private double argumento;
+        public double Argumento
         {
-            get => angulo;
-            set => angulo = value % (2 * Math.PI); //Chequea que esté en el primer giro positivo
+            get => argumento;
+            set => argumento = value % (2 * Math.PI); //Chequea que esté en el primer giro positivo
         }
 
-        public double ParteReal => Radio * Math.Cos(Angulo);
-        public double ParteImaginaria => Radio * Math.Sin(Angulo);
+        public FormaPolar(double modulo, double argumento)
+        {
+            Modulo = modulo;
+            Argumento = argumento;
+        }
 
-        public override string ToString() => "Z = [ " + Radio.ToString("F") + " ; " + Angulo.ToString("F") + " ]";
+        public double ParteReal => Modulo * Math.Cos(Argumento);
+        public double ParteImaginaria => Modulo * Math.Sin(Argumento);
+
+        public override string ToString() => "Z = [ " + Modulo.ToString("F") + " ; " + Argumento.ToString("F") + " ]";
     }
 }

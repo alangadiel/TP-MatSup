@@ -12,6 +12,12 @@ namespace TP_MatSup
         public double ParteReal;
         public double ParteImaginaria;
 
+        public FormaBinomica(double real, double img)
+        {
+            ParteReal = real;
+            ParteImaginaria = img;
+        }
+
         public double Modulo => Math.Sqrt(Math.Pow(ParteReal, 2) + Math.Pow(ParteImaginaria, 2));
         public double Argumento
         {
