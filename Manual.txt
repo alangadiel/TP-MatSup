@@ -5,6 +5,7 @@ La primera etiqueta, "Conversión", permite al usuario ingresar un numero complej
 1- El usuario debe ingresar el numero en la caja de texto utilizando uno de los dos formatos disponibles:
 	- (a , b): Forma binómica. Siendo la parte real representada por "a" y la parte imaginaria por "b".
 	- [a ; b]: Forma polar. Siendo el modulo representado por "a" y el ángulo (en radianes) por "b".
+(los numero que tengan parte fraccionaria deberan ser escritos con punto '.'; ej: 3.1415)
 2- Luego de ingresar el numero en el formato deseado, el usuario debe hacer 'clic' en el botón: "Convertir".
 	- De haber seguido los pasos correctamente, el usuario podrá ver en la misma ventana el resultado 
 	de la conversión.
