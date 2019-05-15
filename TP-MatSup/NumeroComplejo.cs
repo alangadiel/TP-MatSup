@@ -22,7 +22,7 @@ namespace TP_MatSup
             }
             catch
             {
-                throw new Exception("Formato de " + nombre + " invalido.");
+                throw new Exception(num == "" ? "Ingrese " + nombre : "Formato de " + nombre + " invalido.");
             }
         }
         public static NumeroComplejo Parse(string num)
@@ -59,7 +59,16 @@ namespace TP_MatSup
             => new FormaPolar(n1.Modulo / n2.Modulo, n1.Argumento - n2.Argumento);
 
         //Operaciones Avanzadas
-        public static NumeroComplejo operator ^(NumeroComplejo n1, double n2)
-            => new FormaPolar(Math.Pow(n1.Modulo, n2), n1.Argumento * n2);
+        public NumeroComplejo Pow(int n)
+            => new FormaPolar(Math.Pow(Modulo, n), Argumento * n);
+        public NumeroComplejo[] Root(int n)
+        {
+            var vec = new NumeroComplejo[n];
+            for (int k = 0; k < n; k++)
+            {
+                vec[k] = new FormaPolar(Math.Pow(Modulo, 1.0 / n), (Argumento + 2 * k * Math.PI) / n);
+            }
+            return vec;
+        }
     }
 }
