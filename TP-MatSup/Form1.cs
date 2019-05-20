@@ -27,7 +27,7 @@ namespace TP_MatSup
         {
             try
             {
-                labelResulConv.Text = "Resultado: " 
+                labelResulConv.Text = "Resultado: "
                     + NumeroComplejo.Parse(textBoxConv.Text).Convertir().ToString();
                 labelResulConv.Visible = true;
             }
@@ -44,7 +44,7 @@ namespace TP_MatSup
                 var num1 = NumeroComplejo.Parse(textBoxOB1.Text);
                 var num2 = NumeroComplejo.Parse(textBoxOB2.Text);
                 NumeroComplejo res = null;
-                switch((OperacionesBasicas)comboBoxOB.SelectedItem)
+                switch ((OperacionesBasicas)comboBoxOB.SelectedItem)
                 {
                     case OperacionesBasicas.Suma:
                         res = num1 + num2;
@@ -76,12 +76,13 @@ namespace TP_MatSup
             {
                 var num1 = NumeroComplejo.Parse(textBoxOA1.Text);
                 var num2 = int.Parse(textBoxOA2.Text);
-                NumeroComplejo[] res = null;
+                if (num2 <= 0) throw new Exception("Debe ingresar un numero natural.");
+                Raiz[] res;
                 switch ((OperacionesAvanzadas)comboBoxOA.SelectedItem)
                 {
                     case OperacionesAvanzadas.Potenciacion:
-                        res = new NumeroComplejo[1];
-                        res[0] = num1.Pow(num2);
+                        res = new Raiz[1];
+                        res[0] = new Raiz { NumeroComplejo = num1.Pow(num2) };
                         break;
                     case OperacionesAvanzadas.Radicacion:
                         res = num1.Root(num2);

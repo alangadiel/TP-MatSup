@@ -4,6 +4,7 @@ using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TP_MatSup;
 
 namespace TP_MatSup
 {
@@ -61,12 +62,15 @@ namespace TP_MatSup
         //Operaciones Avanzadas
         public NumeroComplejo Pow(int n)
             => new FormaPolar(Math.Pow(Modulo, n), Argumento * n);
-        public NumeroComplejo[] Root(int n)
+        
+        public Raiz[] Root(int n)
         {
-            var vec = new NumeroComplejo[n];
+            var vec = new Raiz[n];
             for (int k = 0; k < n; k++)
             {
-                vec[k] = new FormaPolar(Math.Pow(Modulo, 1.0 / n), (Argumento + 2 * k * Math.PI) / n);
+                vec[k] = new Raiz();
+                vec[k].NumeroComplejo = new FormaPolar(Math.Pow(Modulo, 1.0 / n), (Argumento + 2 * k * Math.PI) / n);
+                vec[k].EsPrimitiva = Helper.MCD(n, k) == 1;
             }
             return vec;
         }
