@@ -30,10 +30,15 @@ namespace TP_MatSup
             if (f1.Frecuencia != f2.Frecuencia)
                 throw new Exception("Las frecuencias deben coincidir.");
 
-            if (f1.Funcion != f2.Funcion)
+            if (f1.Funcion != FunTrig.Cos)
             {
-                f2.Fase += f1.Funcion == FunTrig.Sen ? (-Math.PI / 2.0) : Math.PI / 2.0;
-                f2.Funcion = f1.Funcion;
+                f1.Fase -= (Math.PI / 2.0);
+                f1.Funcion = FunTrig.Cos;
+            }
+            if (f2.Funcion != FunTrig.Cos)
+            {
+                f2.Fase -= (Math.PI / 2.0);
+                f2.Funcion = FunTrig.Cos;
             }
 
             var n1 = new FormaPolar(f1.Amplitud, f1.Fase);
